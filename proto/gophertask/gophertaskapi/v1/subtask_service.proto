@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package gophertask.gophertaskapi.v1;
+
+import "gophertask/gophertaskapi/v1/subtask.proto";
+
+option go_package = "gophertask/gophertaskapi/v1";
+
+service SubtaskServiceV1 {
+  rpc AddSubtask(AddSubtaskRequestV1) returns (AddSubtaskResponseV1);
+  rpc UpdateSubtask(UpdateSubtaskRequestV1) returns (UpdateSubtaskResponseV1);
+  rpc DeleteSubtask(DeleteSubtaskRequestV1) returns (DeleteSubtaskResponseV1);
+  rpc GetSubtaskByID(GetSubtaskByIDRequestV1) returns (GetSubtaskByIDResponseV1);
+  rpc GetSubtasks(GetSubtasksRequestV1) returns (GetSubtasksResponseV1);
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package gophertask.gophertaskapi.v1;
+
+import "gophertask/gophertaskapi/v1/epic.proto";
+
+option go_package = "gophertask/gophertaskapi/v1";
+
+service EpicServiceV1 {
+  rpc AddEpic(AddEpicRequestV1) returns (AddEpicResponseV1);
+  rpc UpdateEpic(UpdateEpicRequestV1) returns (UpdateEpicResponseV1);
+  rpc DeleteEpic(DeleteEpicRequestV1) returns (DeleteEpicResponseV1);
+  rpc GetEpicByID(GetEpicByIDRequestV1) returns (GetEpicByIDResponseV1);
+  rpc GetEpics(GetEpicsRequestV1) returns (GetEpicsResponseV1);
+}

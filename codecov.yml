@@ -1,0 +1,13 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 50%
+  ignore:
+    - "proto/**"
+    - "vendor/**"
+    - "**/generated/**"
+    - "**/*.gen.go"
+    - "**/testdata/**"
+    - "migrations/**"
+    - "certs/**"

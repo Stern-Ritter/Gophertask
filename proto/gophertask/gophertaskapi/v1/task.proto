@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package gophertask.gophertaskapi.v1;
+
+import "gophertask/gophertaskapi/v1/status.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "buf/validate/validate.proto";
+
+option go_package = "gophertask/gophertaskapi/v1";
+
+message TaskV1 {
+  string id = 1;
+  string user_id = 2;
+  string name = 3;
+  string description = 4;
+  TaskStatus status = 5;
+  google.protobuf.Duration duration = 6;
+  google.protobuf.Timestamp started_at = 7;
+}
+
+message AddTaskRequestV1 {
+  string name = 1 [(buf.validate.field).cel = {
+    id: "name",
+    expression: "size(this) <= 256",
+    message: "Name should not exceed 256 characters"
+  }];
+  string description = 2 [(buf.validate.field).cel = {
+    id: "description",
+    expression: "size(this) <= 65536",
+    message: "Description should not exceed 65536 characters"
+  }];
+  google.protobuf.Duration duration = 3;
+  google.protobuf.Timestamp started_at = 4;
+}
+
+message AddTaskResponseV1 {}
+
+message UpdateTaskRequestV1 {
+  string id = 1 [(buf.validate.field).cel = {
+    id: "id",
+    expression: "size(this) >= 1",
+    message: "ID should not be empty"
+  }];
+  string name = 2 [(buf.validate.field).cel = {
+    id: "name",
+    expression: "size(this) <= 256",
+    message: "Name should not exceed 256 characters"
+  }];
+  string description = 3 [(buf.validate.field).cel = {
+    id: "description",
+    expression: "size(this) <= 65536",
+    message: "Description should not exceed 65536 characters"
+  }];
+  TaskStatus status = 4;
+  google.protobuf.Duration duration = 5;
+  google.protobuf.Timestamp started_at = 6;
+}
+
+message UpdateTaskResponseV1 {}
+
+message DeleteTaskRequestV1 {
+  string id = 1 [(buf.validate.field).cel = {
+    id: "id",
+    expression: "size(this) >= 1",
+    message: "Deleted task ID should not be empty"
+  }];
+}
+
+message DeleteTaskResponseV1 {}
+
+message GetTaskByIDRequestV1 {
+  string id = 1 [(buf.validate.field).cel = {
+    id: "id",
+    expression: "size(this) >= 1",
+    message: "Requested task ID should not be empty"
+  }];
+}
+
+message GetTaskByIDResponseV1 {
+  TaskV1 task = 1;
+}
+
+message GetTasksRequestV1 {}
+
+message GetTasksResponseV1 {
+  repeated TaskV1 tasks = 1;
+}
