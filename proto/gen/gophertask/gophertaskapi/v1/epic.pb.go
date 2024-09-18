@@ -102,7 +102,7 @@ func (x *EpicV1) GetStatus() TaskStatus {
 	if x != nil {
 		return x.Status
 	}
-	return TaskStatus_UNKNOWN
+	return TaskStatus_TASK_STATUS_UNKNOWN_UNSPECIFIED
 }
 
 func (x *EpicV1) GetDuration() *durationpb.Duration {

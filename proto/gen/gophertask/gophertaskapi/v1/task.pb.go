@@ -101,7 +101,7 @@ func (x *TaskV1) GetStatus() TaskStatus {
 	if x != nil {
 		return x.Status
 	}
-	return TaskStatus_UNKNOWN
+	return TaskStatus_TASK_STATUS_UNKNOWN_UNSPECIFIED
 }
 
 func (x *TaskV1) GetDuration() *durationpb.Duration {
@@ -297,7 +297,7 @@ func (x *UpdateTaskRequestV1) GetStatus() TaskStatus {
 	if x != nil {
 		return x.Status
 	}
-	return TaskStatus_UNKNOWN
+	return TaskStatus_TASK_STATUS_UNKNOWN_UNSPECIFIED
 }
 
 func (x *UpdateTaskRequestV1) GetDuration() *durationpb.Duration {

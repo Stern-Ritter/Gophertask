@@ -5,8 +5,8 @@ package gophertask.gophertaskapi.v1;
 option go_package = "gophertask/gophertaskapi/v1";
 
 enum TaskStatus {
-  UNKNOWN = 0;
-  NEW = 1;
-  IN_PROGRESS = 2;
-  DONE = 3;
+  TASK_STATUS_UNKNOWN_UNSPECIFIED = 0;
+  TASK_STATUS_NEW = 1;
+  TASK_STATUS_IN_PROGRESS = 2;
+  TASK_STATUS_DONE = 3;
 }

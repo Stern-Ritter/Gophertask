@@ -14,11 +14,11 @@ const (
 
 func MapMessageTaskStatusToTaskStatus(status pb.TaskStatus) TaskStatus {
 	switch status {
-	case pb.TaskStatus_NEW:
+	case pb.TaskStatus_TASK_STATUS_NEW:
 		return New
-	case pb.TaskStatus_IN_PROGRESS:
+	case pb.TaskStatus_TASK_STATUS_IN_PROGRESS:
 		return InProgress
-	case pb.TaskStatus_DONE:
+	case pb.TaskStatus_TASK_STATUS_DONE:
 		return Done
 	default:
 		return New
@@ -28,12 +28,12 @@ func MapMessageTaskStatusToTaskStatus(status pb.TaskStatus) TaskStatus {
 func MapTaskStatusToMessageTaskStatus(status TaskStatus) pb.TaskStatus {
 	switch status {
 	case New:
-		return pb.TaskStatus_NEW
+		return pb.TaskStatus_TASK_STATUS_NEW
 	case InProgress:
-		return pb.TaskStatus_IN_PROGRESS
+		return pb.TaskStatus_TASK_STATUS_IN_PROGRESS
 	case Done:
-		return pb.TaskStatus_DONE
+		return pb.TaskStatus_TASK_STATUS_DONE
 	default:
-		return pb.TaskStatus_NEW
+		return pb.TaskStatus_TASK_STATUS_NEW
 	}
 }

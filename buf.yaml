@@ -8,7 +8,7 @@ deps:
 
 lint:
   use:
-    - DEFAULT
+    - STANDARD
   except:
     - SERVICE_SUFFIX
     - RPC_REQUEST_STANDARD_NAME
