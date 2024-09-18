@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package gophertask.gophertaskapi.v1;
+
+option go_package = "gophertask/gophertaskapi/v1";
+
+enum TaskStatus {
+  TASK_STATUS_UNKNOWN_UNSPECIFIED = 0;
+  TASK_STATUS_NEW = 1;
+  TASK_STATUS_IN_PROGRESS = 2;
+  TASK_STATUS_DONE = 3;
+}

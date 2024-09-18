@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package gophertask.gophertaskapi.v1;
+
+import "gophertask/gophertaskapi/v1/auth.proto";
+
+option go_package = "gophertask/gophertaskapi/v1";
+
+service AuthServiceV1 {
+  rpc SignUp(SignUpRequestV1) returns (SignUpResponseV1);
+  rpc SignIn(SignInRequestV1) returns (SignInResponseV1);
+}

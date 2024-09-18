@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package gophertask.gophertaskapi.v1;
+
+import "gophertask/gophertaskapi/v1/status.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "buf/validate/validate.proto";
+
+option go_package = "gophertask/gophertaskapi/v1";
+
+message SubtaskV1 {
+  string id = 1;
+  string user_id = 2;
+  string epic_id = 3;
+  string name = 4;
+  string description = 5;
+  TaskStatus status = 6;
+  google.protobuf.Duration duration = 7;
+  google.protobuf.Timestamp started_at = 8;
+}
+
+message AddSubtaskRequestV1 {
+  string epic_id = 1 [(buf.validate.field).cel = {
+    id: "epic_id",
+    expression: "size(this) >= 1",
+    message: "Epic ID should not be empty"
+  }];
+  string name = 2 [(buf.validate.field).cel = {
+    id: "name",
+    expression: "size(this) <= 256",
+    message: "Name should not exceed 256 characters"
+  }];
+  string description = 3 [(buf.validate.field).cel = {
+    id: "description",
+    expression: "size(this) <= 65536",
+    message: "Description should not exceed 65536 characters"
+  }];
+  google.protobuf.Duration duration = 4;
+  google.protobuf.Timestamp started_at = 5;
+}
+
+message AddSubtaskResponseV1 {}
+
+message UpdateSubtaskRequestV1 {
+  string id = 1 [(buf.validate.field).cel = {
+    id: "id",
+    expression: "size(this) >= 1",
+    message: "ID should not be empty"
+  }];
+  string epic_id = 2 [(buf.validate.field).cel = {
+    id: "epic_id",
+    expression: "size(this) >= 1",
+    message: "Epic ID should not be empty"
+  }];
+  string name = 3 [(buf.validate.field).cel = {
+    id: "name",
+    expression: "size(this) <= 256",
+    message: "Name should not exceed 256 characters"
+  }];
+  string description = 4 [(buf.validate.field).cel = {
+    id: "description",
+    expression: "size(this) <= 65536",
+    message: "Description should not exceed 65536 characters"
+  }];
+  TaskStatus status = 5;
+  google.protobuf.Duration duration = 6;
+  google.protobuf.Timestamp started_at = 7;
+}
+
+message UpdateSubtaskResponseV1 {}
+
+message DeleteSubtaskRequestV1 {
+  string id = 1 [(buf.validate.field).cel = {
+    id: "id",
+    expression: "size(this) >= 1",
+    message: "Deleted subtask ID should not be empty"
+  }];
+}
+
+message DeleteSubtaskResponseV1 {}
+
+message GetSubtaskByIDRequestV1 {
+  string id = 1 [(buf.validate.field).cel = {
+    id: "id",
+    expression: "size(this) >= 1",
+    message: "Requested subtask ID should not be empty"
+  }];
+}
+
+message GetSubtaskByIDResponseV1 {
+  SubtaskV1 subtask = 1;
+}
+
+message GetSubtasksRequestV1 {}
+
+message GetSubtasksResponseV1 {
+  repeated SubtaskV1 subtasks = 1;
+}
